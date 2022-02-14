@@ -24,22 +24,22 @@ struct AddTwoIntsRequest_
   typedef AddTwoIntsRequest_<ContainerAllocator> Type;
 
   AddTwoIntsRequest_()
-    : a(0)
-    , b(0)  {
+    : emotion()
+    , sensor_id()  {
     }
   AddTwoIntsRequest_(const ContainerAllocator& _alloc)
-    : a(0)
-    , b(0)  {
+    : emotion(_alloc)
+    , sensor_id(_alloc)  {
   (void)_alloc;
     }
 
 
 
-   typedef int64_t _a_type;
-  _a_type a;
+   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _emotion_type;
+  _emotion_type emotion;
 
-   typedef int64_t _b_type;
-  _b_type b;
+   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _sensor_id_type;
+  _sensor_id_type sensor_id;
 
 
 
@@ -70,8 +70,8 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::beginner_tutorials::AddTwoIntsRequest_<ContainerAllocator1> & lhs, const ::beginner_tutorials::AddTwoIntsRequest_<ContainerAllocator2> & rhs)
 {
-  return lhs.a == rhs.a &&
-    lhs.b == rhs.b;
+  return lhs.emotion == rhs.emotion &&
+    lhs.sensor_id == rhs.sensor_id;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -104,12 +104,12 @@ struct IsMessage< ::beginner_tutorials::AddTwoIntsRequest_<ContainerAllocator> c
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::beginner_tutorials::AddTwoIntsRequest_<ContainerAllocator> >
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::beginner_tutorials::AddTwoIntsRequest_<ContainerAllocator> const>
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
@@ -128,12 +128,12 @@ struct MD5Sum< ::beginner_tutorials::AddTwoIntsRequest_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "36d09b846be0b371c5f190354dd3153e";
+    return "5cf34dd271306e1132edb4d0a844fdb1";
   }
 
   static const char* value(const ::beginner_tutorials::AddTwoIntsRequest_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x36d09b846be0b371ULL;
-  static const uint64_t static_value2 = 0xc5f190354dd3153eULL;
+  static const uint64_t static_value1 = 0x5cf34dd271306e11ULL;
+  static const uint64_t static_value2 = 0x32edb4d0a844fdb1ULL;
 };
 
 template<class ContainerAllocator>
@@ -152,8 +152,8 @@ struct Definition< ::beginner_tutorials::AddTwoIntsRequest_<ContainerAllocator> 
 {
   static const char* value()
   {
-    return "int64 a\n"
-"int64 b\n"
+    return "string emotion\n"
+"string sensor_id\n"
 ;
   }
 
@@ -172,8 +172,8 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.a);
-      stream.next(m.b);
+      stream.next(m.emotion);
+      stream.next(m.sensor_id);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -192,10 +192,10 @@ struct Printer< ::beginner_tutorials::AddTwoIntsRequest_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::beginner_tutorials::AddTwoIntsRequest_<ContainerAllocator>& v)
   {
-    s << indent << "a: ";
-    Printer<int64_t>::stream(s, indent + "  ", v.a);
-    s << indent << "b: ";
-    Printer<int64_t>::stream(s, indent + "  ", v.b);
+    s << indent << "emotion: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.emotion);
+    s << indent << "sensor_id: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.sensor_id);
   }
 };
 

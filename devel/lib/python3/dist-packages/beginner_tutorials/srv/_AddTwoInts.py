@@ -8,14 +8,14 @@ import struct
 
 
 class AddTwoIntsRequest(genpy.Message):
-  _md5sum = "36d09b846be0b371c5f190354dd3153e"
+  _md5sum = "5cf34dd271306e1132edb4d0a844fdb1"
   _type = "beginner_tutorials/AddTwoIntsRequest"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """int64 a
-int64 b
+  _full_text = """string emotion
+string sensor_id
 """
-  __slots__ = ['a','b']
-  _slot_types = ['int64','int64']
+  __slots__ = ['emotion','sensor_id']
+  _slot_types = ['string','string']
 
   def __init__(self, *args, **kwds):
     """
@@ -25,7 +25,7 @@ int64 b
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       a,b
+       emotion,sensor_id
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -34,13 +34,13 @@ int64 b
     if args or kwds:
       super(AddTwoIntsRequest, self).__init__(*args, **kwds)
       # message fields cannot be None, assign default values for those that are
-      if self.a is None:
-        self.a = 0
-      if self.b is None:
-        self.b = 0
+      if self.emotion is None:
+        self.emotion = ''
+      if self.sensor_id is None:
+        self.sensor_id = ''
     else:
-      self.a = 0
-      self.b = 0
+      self.emotion = ''
+      self.sensor_id = ''
 
   def _get_types(self):
     """
@@ -54,8 +54,18 @@ int64 b
     :param buff: buffer, ``StringIO``
     """
     try:
-      _x = self
-      buff.write(_get_struct_2q().pack(_x.a, _x.b))
+      _x = self.emotion
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
+      _x = self.sensor_id
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -68,10 +78,24 @@ int64 b
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
       end = 0
-      _x = self
       start = end
-      end += 16
-      (_x.a, _x.b,) = _get_struct_2q().unpack(str[start:end])
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.emotion = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.emotion = str[start:end]
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.sensor_id = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.sensor_id = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -84,8 +108,18 @@ int64 b
     :param numpy: numpy python module
     """
     try:
-      _x = self
-      buff.write(_get_struct_2q().pack(_x.a, _x.b))
+      _x = self.emotion
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
+      _x = self.sensor_id
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -99,10 +133,24 @@ int64 b
       codecs.lookup_error("rosmsg").msg_type = self._type
     try:
       end = 0
-      _x = self
       start = end
-      end += 16
-      (_x.a, _x.b,) = _get_struct_2q().unpack(str[start:end])
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.emotion = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.emotion = str[start:end]
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.sensor_id = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.sensor_id = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -111,12 +159,6 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_2q = None
-def _get_struct_2q():
-    global _struct_2q
-    if _struct_2q is None:
-        _struct_2q = struct.Struct("<2q")
-    return _struct_2q
 # This Python file uses the following encoding: utf-8
 """autogenerated by genpy from beginner_tutorials/AddTwoIntsResponse.msg. Do not edit."""
 import codecs
@@ -127,14 +169,14 @@ import struct
 
 
 class AddTwoIntsResponse(genpy.Message):
-  _md5sum = "b88405221c77b1878a3cbbfff53428d7"
+  _md5sum = "b791c1a4a4f0cee32b54dd1a73706a59"
   _type = "beginner_tutorials/AddTwoIntsResponse"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """int64 sum
+  _full_text = """string resp
 
 """
-  __slots__ = ['sum']
-  _slot_types = ['int64']
+  __slots__ = ['resp']
+  _slot_types = ['string']
 
   def __init__(self, *args, **kwds):
     """
@@ -144,7 +186,7 @@ class AddTwoIntsResponse(genpy.Message):
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       sum
+       resp
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -153,10 +195,10 @@ class AddTwoIntsResponse(genpy.Message):
     if args or kwds:
       super(AddTwoIntsResponse, self).__init__(*args, **kwds)
       # message fields cannot be None, assign default values for those that are
-      if self.sum is None:
-        self.sum = 0
+      if self.resp is None:
+        self.resp = ''
     else:
-      self.sum = 0
+      self.resp = ''
 
   def _get_types(self):
     """
@@ -170,8 +212,12 @@ class AddTwoIntsResponse(genpy.Message):
     :param buff: buffer, ``StringIO``
     """
     try:
-      _x = self.sum
-      buff.write(_get_struct_q().pack(_x))
+      _x = self.resp
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -185,8 +231,14 @@ class AddTwoIntsResponse(genpy.Message):
     try:
       end = 0
       start = end
-      end += 8
-      (self.sum,) = _get_struct_q().unpack(str[start:end])
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.resp = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.resp = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -199,8 +251,12 @@ class AddTwoIntsResponse(genpy.Message):
     :param numpy: numpy python module
     """
     try:
-      _x = self.sum
-      buff.write(_get_struct_q().pack(_x))
+      _x = self.resp
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -215,8 +271,14 @@ class AddTwoIntsResponse(genpy.Message):
     try:
       end = 0
       start = end
-      end += 8
-      (self.sum,) = _get_struct_q().unpack(str[start:end])
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.resp = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.resp = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -225,14 +287,8 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_q = None
-def _get_struct_q():
-    global _struct_q
-    if _struct_q is None:
-        _struct_q = struct.Struct("<q")
-    return _struct_q
 class AddTwoInts(object):
   _type          = 'beginner_tutorials/AddTwoInts'
-  _md5sum = '6a2e34150c00229791cc89ff309fff21'
+  _md5sum = '7c82105cb5cdc3d55e658c0fea7184bb'
   _request_class  = AddTwoIntsRequest
   _response_class = AddTwoIntsResponse

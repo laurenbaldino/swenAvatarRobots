@@ -21,31 +21,31 @@ class AddTwoIntsRequest {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.a = null;
-      this.b = null;
+      this.emotion = null;
+      this.sensor_id = null;
     }
     else {
-      if (initObj.hasOwnProperty('a')) {
-        this.a = initObj.a
+      if (initObj.hasOwnProperty('emotion')) {
+        this.emotion = initObj.emotion
       }
       else {
-        this.a = 0;
+        this.emotion = '';
       }
-      if (initObj.hasOwnProperty('b')) {
-        this.b = initObj.b
+      if (initObj.hasOwnProperty('sensor_id')) {
+        this.sensor_id = initObj.sensor_id
       }
       else {
-        this.b = 0;
+        this.sensor_id = '';
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type AddTwoIntsRequest
-    // Serialize message field [a]
-    bufferOffset = _serializer.int64(obj.a, buffer, bufferOffset);
-    // Serialize message field [b]
-    bufferOffset = _serializer.int64(obj.b, buffer, bufferOffset);
+    // Serialize message field [emotion]
+    bufferOffset = _serializer.string(obj.emotion, buffer, bufferOffset);
+    // Serialize message field [sensor_id]
+    bufferOffset = _serializer.string(obj.sensor_id, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -53,15 +53,18 @@ class AddTwoIntsRequest {
     //deserializes a message object of type AddTwoIntsRequest
     let len;
     let data = new AddTwoIntsRequest(null);
-    // Deserialize message field [a]
-    data.a = _deserializer.int64(buffer, bufferOffset);
-    // Deserialize message field [b]
-    data.b = _deserializer.int64(buffer, bufferOffset);
+    // Deserialize message field [emotion]
+    data.emotion = _deserializer.string(buffer, bufferOffset);
+    // Deserialize message field [sensor_id]
+    data.sensor_id = _deserializer.string(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 16;
+    let length = 0;
+    length += _getByteLength(object.emotion);
+    length += _getByteLength(object.sensor_id);
+    return length + 8;
   }
 
   static datatype() {
@@ -71,14 +74,14 @@ class AddTwoIntsRequest {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '36d09b846be0b371c5f190354dd3153e';
+    return '5cf34dd271306e1132edb4d0a844fdb1';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    int64 a
-    int64 b
+    string emotion
+    string sensor_id
     
     `;
   }
@@ -89,18 +92,18 @@ class AddTwoIntsRequest {
       msg = {};
     }
     const resolved = new AddTwoIntsRequest(null);
-    if (msg.a !== undefined) {
-      resolved.a = msg.a;
+    if (msg.emotion !== undefined) {
+      resolved.emotion = msg.emotion;
     }
     else {
-      resolved.a = 0
+      resolved.emotion = ''
     }
 
-    if (msg.b !== undefined) {
-      resolved.b = msg.b;
+    if (msg.sensor_id !== undefined) {
+      resolved.sensor_id = msg.sensor_id;
     }
     else {
-      resolved.b = 0
+      resolved.sensor_id = ''
     }
 
     return resolved;
@@ -111,22 +114,22 @@ class AddTwoIntsResponse {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.sum = null;
+      this.resp = null;
     }
     else {
-      if (initObj.hasOwnProperty('sum')) {
-        this.sum = initObj.sum
+      if (initObj.hasOwnProperty('resp')) {
+        this.resp = initObj.resp
       }
       else {
-        this.sum = 0;
+        this.resp = '';
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type AddTwoIntsResponse
-    // Serialize message field [sum]
-    bufferOffset = _serializer.int64(obj.sum, buffer, bufferOffset);
+    // Serialize message field [resp]
+    bufferOffset = _serializer.string(obj.resp, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -134,13 +137,15 @@ class AddTwoIntsResponse {
     //deserializes a message object of type AddTwoIntsResponse
     let len;
     let data = new AddTwoIntsResponse(null);
-    // Deserialize message field [sum]
-    data.sum = _deserializer.int64(buffer, bufferOffset);
+    // Deserialize message field [resp]
+    data.resp = _deserializer.string(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 8;
+    let length = 0;
+    length += _getByteLength(object.resp);
+    return length + 4;
   }
 
   static datatype() {
@@ -150,13 +155,13 @@ class AddTwoIntsResponse {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'b88405221c77b1878a3cbbfff53428d7';
+    return 'b791c1a4a4f0cee32b54dd1a73706a59';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    int64 sum
+    string resp
     
     
     `;
@@ -168,11 +173,11 @@ class AddTwoIntsResponse {
       msg = {};
     }
     const resolved = new AddTwoIntsResponse(null);
-    if (msg.sum !== undefined) {
-      resolved.sum = msg.sum;
+    if (msg.resp !== undefined) {
+      resolved.resp = msg.resp;
     }
     else {
-      resolved.sum = 0
+      resolved.resp = ''
     }
 
     return resolved;
@@ -182,6 +187,6 @@ class AddTwoIntsResponse {
 module.exports = {
   Request: AddTwoIntsRequest,
   Response: AddTwoIntsResponse,
-  md5sum() { return '6a2e34150c00229791cc89ff309fff21'; },
+  md5sum() { return '7c82105cb5cdc3d55e658c0fea7184bb'; },
   datatype() { return 'beginner_tutorials/AddTwoInts'; }
 };

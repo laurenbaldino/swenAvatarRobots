@@ -1,8 +1,8 @@
 (cl:in-package beginner_tutorials-srv)
-(cl:export '(A-VAL
-          A
-          B-VAL
-          B
-          SUM-VAL
-          SUM
+(cl:export '(EMOTION-VAL
+          EMOTION
+          SENSOR_ID-VAL
+          SENSOR_ID
+          RESP-VAL
+          RESP
 ))

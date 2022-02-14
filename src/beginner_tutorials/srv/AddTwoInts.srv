@@ -1,4 +1,4 @@
-int64 a
-int64 b
+string emotion
+string sensor_id
 ---
-int64 sum
+string resp
