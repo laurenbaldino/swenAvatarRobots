@@ -1,7 +1,0 @@
-set(beginner_tutorials_SETUP_PY_SETUP_MODULE "distutils.core")
-set(beginner_tutorials_SETUP_PY_VERSION "0.0.0")
-set(beginner_tutorials_SETUP_PY_SCRIPTS "")
-set(beginner_tutorials_SETUP_PY_PACKAGES "beginner_tutorials")
-set(beginner_tutorials_SETUP_PY_PACKAGE_DIRS "include/beginner_tutorials")
-set(beginner_tutorials_SETUP_PY_MODULES "")
-set(beginner_tutorials_SETUP_PY_MODULE_DIRS "")
